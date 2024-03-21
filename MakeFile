@@ -1,0 +1,30 @@
+
+SHELL=cmd
+# Go parameters
+#GOCMD=go
+#GOBUILD=$(GOCMD) build
+#GOCLEAN=$(GOCMD) clean
+
+# Build targets
+BINARY_NAME=parser.exe
+BUILD_DIR=bin
+MAIN_FILE=./
+
+# Default target
+all:
+	make -f jsonparser/Makefile
+	clean build
+
+# Clean the project
+clean:
+	go clean
+	rm -f $(BUILD_DIR)/$(BINARY_NAME)
+
+# Build the project
+build:
+	go build -o $(BUILD_DIR)/$(BINARY_NAME) $(MAIN_FILE)
+
+# Run the compiled binary
+run:
+	go build -o $(BUILD_DIR)/$(BINARY_NAME) $(MAIN_FILE)
+	$(BUILD_DIR)/$(BINARY_NAME)
